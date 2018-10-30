@@ -114,10 +114,10 @@ class Root(http.Root):
         session_db = flectra.tools.config.get('session_db')
         if session_db:
             _logger.debug("Sessions in db %s" % session_db)
-            return PGSessionStore(session_db, session_class=http.FlectraSession)
+            return PGSessionStore(session_db, session_class=http.OpenERPSession)
         path = flectra.tools.config.session_dir
         _logger.debug('HTTP sessions stored in: %s', path)
-        return werkzeug.contrib.sessions.FilesystemSessionStore(path, session_class=http.FlectraSession)
+        return werkzeug.contrib.sessions.FilesystemSessionStore(path, session_class=http.OpenERPSession)
                     
 def check_session(session, env):
     self = env['res.users'].browse(session.uid)
