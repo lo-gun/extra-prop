@@ -1,7 +1,7 @@
-# extra-prop
+# Extra-Properties
 
 ## Repo Information.
-Modules for redis server sesssion storage and ir.attachment storage in db. and large file storage to db 
+Modules for DB sesssion storage, ir.attachment storage in db and large file storage to db 
 
 ## Things Done.
 ```
