@@ -121,7 +121,7 @@ class Root(http.Root):
                     
 def check_session(session, env):
     self = env['res.users'].browse(session.uid)
-    expected = unicode(self._compute_session_token(session.sid))
+    expected = str(self._compute_session_token(session.sid))
     if expected and flectra.tools.misc.consteq(expected, session.session_token):
         return True
     self._invalidate_session_cache()
