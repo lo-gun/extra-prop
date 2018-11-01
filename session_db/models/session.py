@@ -114,14 +114,14 @@ class Root(http.Root):
         session_db = flectra.tools.config.get('session_db')
         if session_db:
             _logger.debug("Sessions in db %s" % session_db)
-            return PGSessionStore(session_db, session_class=http.FlectraSession)
+            return PGSessionStore(session_db, session_class=http.OpenERPSession)
         path = flectra.tools.config.session_dir
         _logger.debug('HTTP sessions stored in: %s', path)
-        return werkzeug.contrib.sessions.FilesystemSessionStore(path, session_class=http.FlectraSession)
+        return werkzeug.contrib.sessions.FilesystemSessionStore(path, session_class=http.OpenERPSession)
                     
 def check_session(session, env):
     self = env['res.users'].browse(session.uid)
-    expected = unicode(self._compute_session_token(session.sid))
+    expected = str(self._compute_session_token(session.sid))
     if expected and flectra.tools.misc.consteq(expected, session.session_token):
         return True
     self._invalidate_session_cache()
